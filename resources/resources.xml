@@ -1,0 +1,9 @@
+<resources>
+    <string id="AppName">Master Of</string>
+    <bitmaps>
+        <bitmap id="LauncherIcon" filename="images/launcher_icon.png" />
+    </bitmaps>
+    <fonts>
+        <font id="master_of_36" filename="fonts/master_of_36.fnt" filter="0123456789:ABCDEFGHIJKLMNOPQRSTUVWXYZ" />
+    </fonts>
+</resources>
