@@ -9,8 +9,8 @@ class MasterOfView extends Ui.WatchFace {
 	var font;
 	var span = 2;
 	var stary_y;
-	var themes = [ //text_1, text_2, bg
-		[0x6600CC, 0xAAAAAA, 0x000000],
+	var themes = [
+		[0x6600CC, 0xAAAAAA, 0x000000], // text_1, text_2, bg
 		[0xFFFFFF, 0xAAAAAA, 0x000000],
 		[0x000000, 0x555555, 0xFFFFFF]
 	];
@@ -45,8 +45,6 @@ class MasterOfView extends Ui.WatchFace {
 	function onLayout(dc) {
 		font = Ui.loadResource(Rez.Fonts.master_of_36);
 		//setLayout(Rez.Layouts.WatchFace(dc));
-		//Sys.println("deviceName:" + deviceName);
-		//Sys.println("onLayout");
 	}
 
 	//! Called when this View is brought to the foreground. Restore
@@ -58,8 +56,8 @@ class MasterOfView extends Ui.WatchFace {
 	//! Update the view
 	function onUpdate(dc) {
 		theme = themes[App.getApp().getProperty("Theme")];
-		Sys.println("onUpdate, devs:" + App.getApp().getProperty("Theme") );
-		Sys.println("theme:" + theme );	
+		//Sys.println("onUpdate, devs:" + App.getApp().getProperty("Theme") );
+		//Sys.println("theme:" + theme );	
 		dc.setColor(theme[2], theme[2]);
 		dc.clear();
 
@@ -84,8 +82,6 @@ class MasterOfView extends Ui.WatchFace {
 		//dc.setColor(0x6600CC, Gfx.COLOR_TRANSPARENT); // old
 		//dc.setColor(0xAA00FF, Gfx.COLOR_TRANSPARENT); // new pink???
 		dc.setColor(theme[0], Gfx.COLOR_TRANSPARENT);
-		//dc.setColor(App.getApp().getProperty("ThemeColor"), Gfx.COLOR_TRANSPARENT);
-		//dc.setColor(0xFFFFFF, Gfx.COLOR_TRANSPARENT);
 		drawTextUp(dc, time_ary, stary_y);
 		drawTextUp(dc, dow_ary, stary_y+42);
 		//dc.setColor(0x555555, Gfx.COLOR_TRANSPARENT);
