@@ -1,0 +1,9 @@
+<settings>
+    <setting propertyKey="@Properties.Theme" title="@Strings.Theme">
+        <settingConfig type="list" required="true">
+            <listEntry value="0">@Strings.ColorOrigin</listEntry>
+            <listEntry value="1">@Strings.ColorDark</listEntry>
+            <listEntry value="2">@Strings.ColorLight</listEntry>
+        </settingConfig>
+    </setting>
+</settings>

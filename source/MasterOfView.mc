@@ -3,52 +3,50 @@ using Toybox.Graphics as Gfx;
 using Toybox.System as Sys;
 using Toybox.Lang as Lang;
 using Toybox.Time.Gregorian as Gregorian;
+using Toybox.Application as App;
 
 class MasterOfView extends Ui.WatchFace {
-	//var bmp;
 	var font;
 	var span = 2;
-	//var screen_type;
 	var stary_y;
+	var themes = [ //text_1, text_2, bg
+		[0x6600CC, 0xAAAAAA, 0x000000],
+		[0xFFFFFF, 0xAAAAAA, 0x000000],
+		[0x000000, 0x555555, 0xFFFFFF]
+	];
+	var theme;
 
 	function initialize() {
-		font = Ui.loadResource(Rez.Fonts.master_of_36);
 		WatchFace.initialize();
 
 		var ss = Sys.getDeviceSettings().screenShape;
 		if (ss == Sys.SCREEN_SHAPE_ROUND ) {
-			//screen_type = "ROUND";
 			stary_y = 34;
 		}
 		else if (ss == Sys.SCREEN_SHAPE_SEMI_ROUND ) {
-			//screen_type = "SEMI_ROUND";
 			stary_y = 17;
 		}
+		/*
 		else if (ss == Sys.SCREEN_SHAPE_RECTANGLE ) {
-			//screen_type = "RECT";
 			stary_y = 0;
 		}
+		*/
 		else {
-			//screen_type = null;
 			num = 0;
 		}
 
-		var sc_width = Sys.getDeviceSettings().screenWidth;
-		var sc_height = Sys.getDeviceSettings().screenHeight;
+		//var sc_width = Sys.getDeviceSettings().screenWidth;
+		//var sc_height = Sys.getDeviceSettings().screenHeight;
 		//Sys.println("width:" + sc_width);
 		//Sys.println("height:" + sc_height);
 	}
 
 	//! Load your resources here
 	function onLayout(dc) {
+		font = Ui.loadResource(Rez.Fonts.master_of_36);
 		//setLayout(Rez.Layouts.WatchFace(dc));
-		//font = Ui.loadResource(Rez.Fonts.master_of_36);
-
-		//var deviceName = Ui.loadResource(Rez.Strings.deviceName);
 		//Sys.println("deviceName:" + deviceName);
-
-		var devs = Sys.getDeviceSettings().heightUnits;
-		Sys.println("devs:" + devs);
+		//Sys.println("onLayout");
 	}
 
 	//! Called when this View is brought to the foreground. Restore
@@ -59,13 +57,11 @@ class MasterOfView extends Ui.WatchFace {
 
 	//! Update the view
 	function onUpdate(dc) {
-		dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
+		theme = themes[App.getApp().getProperty("Theme")];
+		Sys.println("onUpdate, devs:" + App.getApp().getProperty("Theme") );
+		Sys.println("theme:" + theme );	
+		dc.setColor(theme[2], theme[2]);
 		dc.clear();
-		//dc.drawBitmap(0, 0, bmp);
-		//var count = time_ary.size();
-		//!
-		//dc.setColor(Gfx.COLOR_PURPLE, Gfx.COLOR_TRANSPARENT);
-		//dc.drawText(10, 66, font, ":::", Gfx.TEXT_JUSTIFY_LEFT);
 
 		// Call the parent onUpdate function to redraw the layout
 		// View.onUpdate(dc);
@@ -77,7 +73,6 @@ class MasterOfView extends Ui.WatchFace {
 		var now = Time.now();
 		var info = Gregorian.info(now, Time.FORMAT_SHORT);
 		//var info_m = Gregorian.info(now, Time.FORMAT_LONG).month; SHORT LONG
-		//Sys.println("info_m:" + info_m + " \n");
 
 		//var dateStr = Lang.format("$1$:$2$:$3$", [info.day_of_week.toString().toUpper(), info.month.toString().toUpper(), info.day]);
 		//dc.drawText(100, 120, font, dateStr, Gfx.TEXT_JUSTIFY_CENTER);
@@ -86,14 +81,15 @@ class MasterOfView extends Ui.WatchFace {
 		var day_ary = str2ary(info.day.toString() + mb_GetMonth(info.month));
 		var year_ary = str2ary(info.year.toString());
 
-		//dc.setColor(0x6600CC, Gfx.COLOR_TRANSPARENT);
-		dc.setColor(0xAA00FF, Gfx.COLOR_TRANSPARENT);
-		//dc.setColor(0xFF00FF, Gfx.COLOR_TRANSPARENT);
+		//dc.setColor(0x6600CC, Gfx.COLOR_TRANSPARENT); // old
+		//dc.setColor(0xAA00FF, Gfx.COLOR_TRANSPARENT); // new pink???
+		dc.setColor(theme[0], Gfx.COLOR_TRANSPARENT);
+		//dc.setColor(App.getApp().getProperty("ThemeColor"), Gfx.COLOR_TRANSPARENT);
+		//dc.setColor(0xFFFFFF, Gfx.COLOR_TRANSPARENT);
 		drawTextUp(dc, time_ary, stary_y);
-		//dc.drawText(0, 66, Graphics.FONT_MEDIUM, dow_ary.toString(), Gfx.TEXT_JUSTIFY_LEFT);
 		drawTextUp(dc, dow_ary, stary_y+42);
 		//dc.setColor(0x555555, Gfx.COLOR_TRANSPARENT);
-		dc.setColor(0xAAAAAA, Gfx.COLOR_TRANSPARENT);
+		dc.setColor(theme[1], Gfx.COLOR_TRANSPARENT);
 		drawTextUp(dc, day_ary, stary_y+84);
 		drawTextUp(dc, year_ary, stary_y+126);
 	}

@@ -1,4 +1,5 @@
 using Toybox.Application as App;
+using Toybox.WatchUi as Ui;
 
 class MasterOfApp extends App.AppBase {
 
@@ -18,5 +19,10 @@ class MasterOfApp extends App.AppBase {
 	function getInitialView() {
 		return [ new MasterOfView() ];
 	}
+
+    // New app settings have been received so trigger a UI update
+    function onSettingsChanged() {
+        Ui.requestUpdate();
+    }
 
 }

@@ -1,0 +1,11 @@
+<strings>
+
+    <string id="AppName">MasterOf</string>
+
+    <string id="Theme">Choose a Theme</string>
+
+    <string id="ColorOrigin">Original (Purple)</string>
+    <string id="ColorDark">Dark</string>
+    <string id="ColorLight">Light</string>
+
+</strings>
