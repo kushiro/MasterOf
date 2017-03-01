@@ -57,7 +57,7 @@ class MasterOfView extends Ui.WatchFace {
 	function onUpdate(dc) {
 		theme = themes[App.getApp().getProperty("Theme")];
 		//Sys.println("onUpdate, devs:" + App.getApp().getProperty("Theme") );
-		//Sys.println("theme:" + theme );	
+		//Sys.println("theme:" + theme );
 		dc.setColor(theme[2], theme[2]);
 		dc.clear();
 

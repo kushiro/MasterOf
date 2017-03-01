@@ -2,14 +2,13 @@
     <iq:application entry="MasterOfApp" id="077ED56F50214AFDA93162B26D96595D" launcherIcon="@Drawables.LauncherIcon" minSdkVersion="1.2.1" name="@Strings.AppName" type="watchface">
 
         <iq:products>
-            <iq:product id="round_watch"/>
-            <iq:product id="semi_round_watch"/>
             <iq:product id="fr630"/>
             <iq:product id="fr235"/>
             <iq:product id="fr735xt"/>
             <iq:product id="fr230"/>
             <iq:product id="fenix3"/>
             <iq:product id="fenix3_hr"/>
+            <iq:product id="fenixchronos"/>
             <iq:product id="d2bravo"/>
             <iq:product id="d2bravo_titanium"/>
         </iq:products>
