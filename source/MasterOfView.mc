@@ -21,6 +21,7 @@ class MasterOfView extends Ui.WatchFace {
 
 		var ss = Sys.getDeviceSettings().screenShape;
 		var sw = Sys.getDeviceSettings().screenWidth;
+		// Sys.println("width:" + sw);
 
 		if (ss == Sys.SCREEN_SHAPE_ROUND ) {
 			if(sw == 240) {
@@ -28,6 +29,9 @@ class MasterOfView extends Ui.WatchFace {
 			}
 			else if(sw == 260) {
 				stary_y = 55;
+			}
+			else if(sw == 280) {
+				stary_y = 65;
 			}
 			else {
 				stary_y = 34;
