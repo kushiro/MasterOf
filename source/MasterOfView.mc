@@ -20,19 +20,31 @@ class MasterOfView extends Ui.WatchFace {
 		WatchFace.initialize();
 
 		var ss = Sys.getDeviceSettings().screenShape;
+		var sw = Sys.getDeviceSettings().screenWidth;
+		// Sys.println("width:" + sw);
+
 		if (ss == Sys.SCREEN_SHAPE_ROUND ) {
-			stary_y = 34;
+			if(sw == 240) {
+				stary_y = 45;
+			}
+			else if(sw == 260) {
+				stary_y = 55;
+			}
+			else if(sw == 280) {
+				stary_y = 65;
+			}
+			else {
+				stary_y = 34;
+			}
 		}
 		else if (ss == Sys.SCREEN_SHAPE_SEMI_ROUND ) {
 			stary_y = 17;
 		}
-		/*
 		else if (ss == Sys.SCREEN_SHAPE_RECTANGLE ) {
 			stary_y = 0;
 		}
-		*/
 		else {
-			num = 0;
+			stary_y = 0;
 		}
 
 		//var sc_width = Sys.getDeviceSettings().screenWidth;
